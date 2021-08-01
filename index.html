@@ -9,12 +9,25 @@
 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
-        <script type="text/javascript" src="./main.js"></script>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/main.js"></script>
 
     </head>
     <body>
 
         <h1>Chores</h1>
+
+        <h2>Daily Chores</h2>
+        <div id="daily-chores"></div>
+
+
+        <h2>Weekly Chores</h2>
+        <div id="weekly-chores"></div>
+
+
+        <h2>Monthly Chores</h2>
+        <div id="monthly-chores"></div>
 
         <script type="text/javascript">
          createChores();
