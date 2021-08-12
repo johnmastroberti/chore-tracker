@@ -4,14 +4,20 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+const path = require('path');
+const Database = require('./lib/database');
+const importChores = require('./lib/import-chores');
 
+Database.initDatabase();
+
+importChores('chores.csv');
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.get('/main.js', (req, res) => {
-  res.sendFile(__dirname + "/main.js");
+  res.sendFile(path.join(__dirname, "public", "main.js"));
 });
 
 // app.get('/socket.io/socket.io.js', (req, res) => {
