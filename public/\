@@ -1,6 +1,6 @@
 let ChoreList = []
 
-var socket = io("doghousecooking.com:8080");
+var socket = io("localhost:8080");
 
 function getChores() {
   socket.emit('get-chores');
@@ -25,7 +25,6 @@ socket.on('chore-uncomplete', (choreName) => {
 function setChoreStatus(choreName, status) {
   for (c of ChoreList) {
     if (c.name == choreName) {
-      console.log(`Setting completion status of ${choreName}`);
       c.completed = status;
     }
   }
@@ -78,13 +77,10 @@ function renderChores() {
 
 
 function updateDisplay() {
-  console.log("updateDisplay()");
-  console.log("choreList = ", ChoreList);
   for (i in ChoreList) {
-    let checkbox = document.getElementById('chore' + i);
-    checkbox.checked = ChoreList[i].completed;
+    document.getElementById('chore' + i).checked = chores[i].completed;
     let label = document.getElementById('chorelabel' + i);
-    const newStyle = ChoreList[i].completed ? "line-through" : "none";
+    const newStyle = chores[i].isCompleted ? "line-through" : "none";
     label.style.textDecoration = newStyle;
   }
 }
@@ -93,5 +89,5 @@ function updateDisplay() {
 function updateChores(choreNum) {
   const choreComp = document.getElementById('chore' + choreNum).checked;
   const event = choreComp ? "chore-complete" : "chore-uncomplete";
-  socket.emit(event, ChoreList[choreNum].name);
+  socket.emit(event, chores[choreNum].name);
 }
