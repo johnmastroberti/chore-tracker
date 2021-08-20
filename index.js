@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 const http = require('http');
+const fs = require('fs');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 const path = require('path');
 const Database = require('./lib/database');
-const importChores = require('./lib/import-chores');
 
 Database.initDatabase();
 
@@ -20,6 +20,17 @@ app.get('/', (req, res) => {
 app.get('/main.js', (req, res) => {
   res.sendFile(path.join(__dirname, "public", "main.js"));
 });
+
+const host = fs.readFileSync('/etc/hostname');
+let HOST = "localhost";
+const PORT = 8080;
+if (host == 'johnvps')
+  HOST = "doghousecooking.com"
+
+app.get('/host.js', (req, res) => {
+  res.send(`const HOST = \"${HOST}\"\nconst PORT=${PORT}`);
+});
+
 
 // app.get('/socket.io/socket.io.js', (req, res) => {
 //   res.sendFile("node_modules/socket.io/client-dist/socket.io.js", {root: __dirname + "/.."});

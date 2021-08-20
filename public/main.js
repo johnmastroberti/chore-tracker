@@ -1,6 +1,6 @@
 let ChoreList = []
 
-var socket = io("doghousecooking.com:8080");
+var socket = io(`${HOST}:${PORT}`);
 
 function getChores() {
   socket.emit('get-chores');
