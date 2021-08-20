@@ -9,6 +9,12 @@
 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="/main.css">
 
         <script src="/socket.io/socket.io.js"></script>
         <script src="/host.js"></script>
@@ -19,19 +25,21 @@
 
         <h1>Chores</h1>
 
-        <h2>Overdue Chores</h2>
+        <div class="wrapper">
+        <h2 id="overdue-header">Overdue Chores</h2>
         <div id="overdue-chores"></div>
 
-        <h2>Daily Chores</h2>
+        <h2 id="daily-header">Daily Chores</h2>
         <div id="daily-chores"></div>
 
 
-        <h2>Weekly Chores</h2>
+        <h2 id="weekly-header">Weekly Chores</h2>
         <div id="weekly-chores"></div>
 
 
-        <h2>Monthly Chores</h2>
+        <h2 id="monthly-header">Monthly Chores</h2>
         <div id="monthly-chores"></div>
+        </div>
 
         <script type="text/javascript">
          getChores();

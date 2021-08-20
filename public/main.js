@@ -87,6 +87,12 @@ function updateDisplay() {
     const newStyle = ChoreList[i].completed ? "line-through" : "none";
     label.style.textDecoration = newStyle;
   }
+
+  // Hide headers for empty divs
+  for (let category of ["overdue", "daily", "weekly", "monthly"]) {
+    if (document.getElementById(category+"-chores").children.length == 0)
+      document.getElementById(category+"-header").remove();
+  }
 }
 
 
