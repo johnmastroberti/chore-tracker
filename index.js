@@ -24,7 +24,7 @@ app.get('/main.js', (req, res) => {
 const host = fs.readFileSync('/etc/hostname');
 let HOST = "localhost";
 const PORT = 8080;
-if (host == 'johnvps')
+if (host == 'johnvps\n')
   HOST = "doghousecooking.com"
 
 app.get('/host.js', (req, res) => {
